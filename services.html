@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaiding - Professional Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1B3C36;
+            --secondary-color: #F9F8F2;
+            --accent-color: #9CA08C;
+            --dark-bg: #1c1c1c;
+            --darker-bg: #121212;
+            --text-light: #b0b0b0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--secondary-color);
+            padding: 15px 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            display: flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .navbar-brand img {
+            height: clamp(30px, 5vw, 40px);
+            margin-right: 10px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            padding: 8px 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after,
+        .nav-link.active:after {
+            width: 100%;
+        }
+
+        .search-icon {
+            background-color: var(--primary-color);
+            color: white;
+            width: clamp(35px, 6vw, 40px);
+            height: clamp(35px, 6vw, 40px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-icon:hover {
+            background-color: #142822;
+            transform: scale(1.05);
+        }
+
+        .btn-custom {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 30px;
+            padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
+            font-weight: 600;
+            margin-left: 10px;
+            border: none;
+            transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            cursor: pointer;
+        }
+
+        .btn-custom:hover {
+            background-color: #142822;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 90%;
+            max-width: 1400px;
+            height: clamp(250px, 50vw, 400px);
+            margin: 20px auto;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('hero.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            color: white;
+            text-align: left;
+            padding: 0 clamp(20px, 5%, 50px);
+            border-radius: clamp(10px, 2vw, 20px);
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            margin: 0;
+            position: relative;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .breadcrumb {
+            margin-top: 10px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb a {
+            color: white;
+            text-decoration: none;
+            margin-right: 5px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .breadcrumb a:hover {
+            color: #ddd;
+            text-decoration: underline;
+        }
+
+        /* Services Section */
+        .services-section {
+            margin: 30px auto;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .services-section .container {
+            width: 100%;
+            margin: 0 auto;
+            padding: clamp(1rem, 3vw, 2rem);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 8px;
+            text-align: center;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            margin-bottom: 1rem;
+        }
+
+        .service-icon img {
+            width: clamp(100px, 15vw, 150px);
+            height: clamp(100px, 15vw, 150px);
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .service-title {
+            margin-bottom: 0.75rem;
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .service-description {
+            margin-bottom: 1.5rem;
+            font-size: clamp(0.85rem, 2vw, 0.95rem);
+            color: #666;
+            flex-grow: 1;
+        }
+
+        .service-link {
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 600;
+            color: #0066cc;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            padding-bottom: 2px;
+            cursor: pointer;
+        }
+
+        .service-link:hover {
+            border-color: #0066cc;
+        }
+
+        /* Service Detail Page Styles */
+        .service-detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .service-detail-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .service-detail-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .service-detail-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-detail-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .service-detail-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-detail-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .service-features {
+            margin: 40px 0;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Appointment Form Styles */
+        .appointment-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            margin: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .appointment-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+            width: 200px;
+        }
+
+        .submit-btn:hover {
+            background: #142822;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: #f0f9f0;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 1px solid #c5e3c5;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 1.8rem;
+            color: #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .success-text {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #142822;
+        }
+
+        /* Footer Section */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            padding: clamp(2rem, 5vw, 3.75rem) 5%;
+            background: var(--dark-bg);
+            color: white;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-left {
+            max-width: 100%;
+            flex: 1 1 300px;
+        }
+
+        .footer-left img {
+            width: clamp(50px, 8vw, 60px);
+            margin-bottom: 15px;
+        }
+
+        .footer-left h2 {
+            margin: 10px 0;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            color: white;
+        }
+
+        .footer-left p {
+            font-size: clamp(0.8rem, 2vw, 0.875rem);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .footer-input {
+            display: flex;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .footer-input input {
+            flex: 1;
+            padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.8rem, 2vw, 1rem);
+            border: none;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+            font-size: clamp(0.8rem, 2vw, 0.875rem);
+            min-width: 0;
+        }
+
+        .footer-input button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 clamp(1rem, 2vw, 1.25rem);
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: clamp(0.8rem, 2vw, 0.875rem);
+        }
+
+        .footer-input button:hover {
+            background: #142822;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: clamp(1.5rem, 5vw, 3.75rem);
+            flex-wrap: wrap;
+            flex: 2 1 500px;
+        }
+
+        .footer-column {
+            min-width: 150px;
+            flex: 1;
+        }
+
+        .footer-column h3 {
+            margin-bottom: clamp(1rem, 2vw, 1.25rem);
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            color: white;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column ul li {
+            margin: clamp(0.5rem, 1.5vw, 0.75rem) 0;
+            font-size: clamp(0.8rem, 2vw, 0.875rem);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-column ul li:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: clamp(0.8rem, 2vw, 1.25rem);
+            background: var(--darker-bg);
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            color: var(--text-light);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-nav {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .nav-link {
+                margin: 5px;
+                padding: 5px 0;
+            }
+
+            .hero {
+                width: 95%;
+                height: clamp(200px, 50vw, 250px);
+                text-align: center;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            .services-section .container {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                min-height: 300px;
+            }
+
+            .service-detail-header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .appointment-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 5%;
+            }
+
+            .nav-link {
+                margin: 5px 3px;
+                font-size: 0.85rem;
+            }
+
+            .btn-custom,
+            .search-icon {
+                margin-left: 5px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .breadcrumb {
+                font-size: 0.85rem;
+            }
+
+            .footer {
+                flex-direction: column;
+            }
+
+            .footer-right {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .footer-column {
+                min-width: 100%;
+            }
+
+            .service-detail-title {
+                font-size: 1.8rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .navbar-nav {
+                flex-direction: column;
+                display: none;
+            }
+
+            .navbar-nav.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                cursor: pointer;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://hkangles.com/gaiding/wp-content/uploads/2025/01/main-logo.svg" alt="Gaiding Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">SERVICES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="project.html">PROJECT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">CONTACT US</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <a href="#" class="btn btn-custom">GET STARTED →</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>SERVICES</h1>
+        <div class="breadcrumb">
+            <a href="#">HOME</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <!-- Business Planning Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="business-planning.jpg"
+                        alt="Business Planning">
+                </div>
+                <h3 class="service-title">Business Planning</h3>
+                <p class="service-description">
+                    Comprehensive business planning services to help you establish and grow your business effectively.
+                </p>
+                <a href="#business-planning" class="service-link" onclick="showServiceDetail('business-planning')">Service Details</a>
+            </div>
+
+            <!-- Careers Coaching Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="business-planning2.jpg"
+                        alt="Careers Coaching">
+                </div>
+                <h3 class="service-title">Careers Coaching</h3>
+                <p class="service-description">
+                    Personalized career coaching to help you achieve your professional goals and aspirations.
+                </p>
+                <a href="#careers-coaching" class="service-link" onclick="showServiceDetail('careers-coaching')">Service Details</a>
+            </div>
+
+            <!-- Problems Solving Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="business-planning3.jpg"
+                        alt="Problems Solving">
+                </div>
+                <h3 class="service-title">Problems Solving</h3>
+                <p class="service-description">
+                    Expert problem-solving strategies to overcome business challenges and obstacles.
+                </p>
+                <a href="#problems-solving" class="service-link" onclick="showServiceDetail('problems-solving')">Service Details</a>
+            </div>
+
+            <!-- Financial Consulting Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="business-planning4.jpg"
+                        alt="Financial Consulting">
+                </div>
+                <h3 class="service-title">Financial Consulting</h3>
+                <p class="service-description">
+                    Strategic financial advice to optimize your business performance and growth.
+                </p>
+                <a href="#financial-consulting" class="service-link" onclick="showServiceDetail('financial-consulting')">Service Details</a>
+            </div>
+
+            <!-- Marketing Strategy Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="business-planning5.jpg"
+                        alt="Marketing Strategy">
+                </div>
+                <h3 class="service-title">Marketing Strategy</h3>
+                <p class="service-description">
+                    Innovative marketing strategies to enhance your brand visibility and customer engagement.
+                </p>
+                <a href="#marketing-strategy" class="service-link" onclick="showServiceDetail('marketing-strategy')">Service Details</a>
+            </div>
+
+            <!-- Leadership Development Card -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <img src="../images/business-planning6.jpg"
+                        alt="Leadership Development">
+                </div>
+                <h3 class="service-title">Leadership Development</h3>
+                <p class="service-description">
+                    Programs to develop strong leadership skills for you and your management team.
+                </p>
+                <a href="#leadership-development" class="service-link" onclick="showServiceDetail('leadership-development')">Service Details</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Planning Detail -->
+    <div id="business-planning" class="service-detail-container" style="display: none;">
+        <div class="service-detail-header">
+            <div class="service-detail-image">
+                <img src="business-planning.jpg"
+                    alt="Business Planning">
+            </div>
+            <div class="service-detail-content">
+                <h1 class="service-detail-title">Business Planning</h1>
+                <p class="service-detail-description">
+                    Our comprehensive business planning services help entrepreneurs and organizations create robust, 
+                    actionable business plans that serve as roadmaps for success. Whether you're launching a startup, 
+                    seeking investment, or planning for growth, our expert consultants will guide you through every step.
+                </p>
+                <div class="service-features">
+                    <h2>Key Features</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="feature-title">Market Analysis</h3>
+                            <p class="feature-description">
+                                Detailed assessment of your target market, competition, and industry trends.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="feature-title">Strategic Planning</h3>
+                            <p class="feature-description">
+                                Clear roadmap with measurable objectives and key performance indicators.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <h3 class="feature-title">Financial Projections</h3>
+                            <p class="feature-description">
+                                3-5 year financial forecasts including income statements and cash flow analysis.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="feature-title">Team Development</h3>
+                            <p class="feature-description">
+                                Organizational structure and human resources planning for your business.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Form -->
+        <div class="appointment-section">
+            <h2 class="section-title">Schedule a Consultation</h2>
+            <form class="appointment-form" onsubmit="submitForm(event, 'business-planning')">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="bp-name">Full Name</label>
+                            <input type="text" class="form-control" id="bp-name" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="bp-email">Email Address</label>
+                            <input type="email" class="form-control" id="bp-email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="bp-phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="bp-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="bp-date">Preferred Date</label>
+                            <input type="date" class="form-control" id="bp-date" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="bp-message">Your Business Needs</label>
+                    <textarea class="form-control" id="bp-message" rows="5"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="bp-success" class="success-message">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="success-title">Request Submitted Successfully!</h3>
+                <p class="success-text">
+                    Thank you for your interest in our Business Planning service. 
+                    Our team will review your request and contact you within 24 hours 
+                    to schedule your consultation.
+                </p>
+                <button class="back-btn" onclick="hideServiceDetail()">Back to Services</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Careers Coaching Detail -->
+    <div id="careers-coaching" class="service-detail-container" style="display: none;">
+        <div class="service-detail-header">
+            <div class="service-detail-image">
+                <img src="business-planning2.jpg"
+                    alt="Careers Coaching">
+            </div>
+            <div class="service-detail-content">
+                <h1 class="service-detail-title">Careers Coaching</h1>
+                <p class="service-detail-description">
+                    Our career coaching services are designed to help professionals at all levels achieve their career 
+                    goals. Whether you're just starting out, looking to advance, or considering a career change, our 
+                    certified coaches provide personalized guidance to help you navigate your professional journey.
+                </p>
+                <div class="service-features">
+                    <h2>Key Features</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h3 class="feature-title">Career Assessment</h3>
+                            <p class="feature-description">
+                                Identify your strengths, values, and ideal career paths.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Resume Optimization</h3>
+                            <p class="feature-description">
+                                Create a compelling resume that stands out to employers.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3 class="feature-title">Interview Preparation</h3>
+                            <p class="feature-description">
+                                Master interview techniques and practice with mock sessions.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3 class="feature-title">Networking Strategies</h3>
+                            <p class="feature-description">
+                                Learn effective networking techniques to expand your opportunities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Form -->
+        <div class="appointment-section">
+            <h2 class="section-title">Schedule a Coaching Session</h2>
+            <form class="appointment-form" onsubmit="submitForm(event, 'careers-coaching')">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="cc-name">Full Name</label>
+                            <input type="text" class="form-control" id="cc-name" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="cc-email">Email Address</label>
+                            <input type="email" class="form-control" id="cc-email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="cc-phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="cc-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="cc-date">Preferred Date</label>
+                            <input type="date" class="form-control" id="cc-date" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="cc-message">Your Career Goals</label>
+                    <textarea class="form-control" id="cc-message" rows="5"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="cc-success" class="success-message">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="success-title">Request Submitted Successfully!</h3>
+                <p class="success-text">
+                    Thank you for your interest in our Careers Coaching service. 
+                    Our team will review your request and contact you within 24 hours 
+                    to schedule your session.
+                </p>
+                <button class="back-btn" onclick="hideServiceDetail()">Back to Services</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Problems Solving Detail -->
+    <div id="problems-solving" class="service-detail-container" style="display: none;">
+        <div class="service-detail-header">
+            <div class="service-detail-image">
+                <img src="business-planning3.jpg"
+                    alt="Problems Solving">
+            </div>
+            <div class="service-detail-content">
+                <h1 class="service-detail-title">Problems Solving</h1>
+                <p class="service-detail-description">
+                    Our problem-solving service provides expert analysis and strategic solutions for complex business 
+                    challenges. We employ proven methodologies to identify root causes, develop actionable solutions, 
+                    and implement sustainable improvements to your business operations.
+                </p>
+                <div class="service-features">
+                    <h2>Key Features</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3 class="feature-title">Root Cause Analysis</h3>
+                            <p class="feature-description">
+                                Identify the underlying causes of business challenges.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="feature-title">Creative Solutions</h3>
+                            <p class="feature-description">
+                                Develop innovative approaches to overcome obstacles.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3 class="feature-title">Implementation Planning</h3>
+                            <p class="feature-description">
+                                Create step-by-step plans to execute solutions effectively.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3 class="feature-title">Performance Metrics</h3>
+                            <p class="feature-description">
+                                Establish KPIs to measure solution effectiveness.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Form -->
+        <div class="appointment-section">
+            <h2 class="section-title">Request Problem Solving Consultation</h2>
+            <form class="appointment-form" onsubmit="submitForm(event, 'problems-solving')">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ps-name">Full Name</label>
+                            <input type="text" class="form-control" id="ps-name" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ps-email">Email Address</label>
+                            <input type="email" class="form-control" id="ps-email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ps-phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="ps-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ps-company">Company Name</label>
+                            <input type="text" class="form-control" id="ps-company" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="ps-message">Describe Your Challenge</label>
+                    <textarea class="form-control" id="ps-message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="ps-success" class="success-message">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="success-title">Request Submitted Successfully!</h3>
+                <p class="success-text">
+                    Thank you for your interest in our Problem Solving service. 
+                    Our team will review your request and contact you within 24 hours 
+                    to discuss your challenge.
+                </p>
+                <button class="back-btn" onclick="hideServiceDetail()">Back to Services</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Financial Consulting Detail -->
+    <div id="financial-consulting" class="service-detail-container" style="display: none;">
+        <div class="service-detail-header">
+            <div class="service-detail-image">
+                <img src="business-planning4.jpg"
+                    alt="Financial Consulting">
+            </div>
+            <div class="service-detail-content">
+                <h1 class="service-detail-title">Financial Consulting</h1>
+                <p class="service-detail-description">
+                    Our financial consulting services provide expert guidance to help businesses optimize their financial 
+                    performance, manage risks, and make informed strategic decisions. We offer tailored solutions for 
+                    financial planning, analysis, and management to drive sustainable growth.
+                </p>
+                <div class="service-features">
+                    <h2>Key Features</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-piggy-bank"></i>
+                            </div>
+                            <h3 class="feature-title">Financial Planning</h3>
+                            <p class="feature-description">
+                                Comprehensive budgeting and financial forecasting services.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3 class="feature-title">Investment Analysis</h3>
+                            <p class="feature-description">
+                                Evaluate potential investments and ROI calculations.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="feature-title">Risk Management</h3>
+                            <p class="feature-description">
+                                Identify and mitigate financial risks to your business.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-hand-holding-usd"></i>
+                            </div>
+                            <h3 class="feature-title">Funding Strategies</h3>
+                            <p class="feature-description">
+                                Guidance on capital raising and financing options.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Form -->
+        <div class="appointment-section">
+            <h2 class="section-title">Request Financial Consultation</h2>
+            <form class="appointment-form" onsubmit="submitForm(event, 'financial-consulting')">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="fc-name">Full Name</label>
+                            <input type="text" class="form-control" id="fc-name" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="fc-email">Email Address</label>
+                            <input type="email" class="form-control" id="fc-email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="fc-phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="fc-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="fc-company">Company Name</label>
+                            <input type="text" class="form-control" id="fc-company" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="fc-message">Your Financial Needs</label>
+                    <textarea class="form-control" id="fc-message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="fc-success" class="success-message">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="success-title">Request Submitted Successfully!</h3>
+                <p class="success-text">
+                    Thank you for your interest in our Financial Consulting service. 
+                    Our team will review your request and contact you within 24 hours 
+                    to discuss your financial needs.
+                </p>
+                <button class="back-btn" onclick="hideServiceDetail()">Back to Services</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Marketing Strategy Detail -->
+    <div id="marketing-strategy" class="service-detail-container" style="display: none;">
+        <div class="service-detail-header">
+            <div class="service-detail-image">
+                <img src="business-planning5.jpg"
+                    alt="Marketing Strategy">
+            </div>
+            <div class="service-detail-content">
+                <h1 class="service-detail-title">Marketing Strategy</h1>
+                <p class="service-detail-description">
+                    Our marketing strategy services help businesses develop comprehensive, data-driven marketing plans 
+                    that drive growth and customer engagement. We analyze your market position, identify opportunities, 
+                    and create tailored strategies to maximize your marketing ROI.
+                </p>
+                <div class="service-features">
+                    <h2>Key Features</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="feature-title">Target Audience Analysis</h3>
+                            <p class="feature-description">
+                                Identify and understand your ideal customer profiles.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chess"></i>
+                            </div>
+                            <h3 class="feature-title">Competitive Positioning</h3>
+                            <p class="feature-description">
+                                Develop strategies to differentiate from competitors.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-funnel-dollar"></i>
+                            </div>
+                            <h3 class="feature-title">Conversion Optimization</h3>
+                            <p class="feature-description">
+                                Improve conversion rates across all marketing channels.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3 class="feature-title">Performance Analytics</h3>
+                            <p class="feature-description">
+                                Measure and optimize campaign performance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Form -->
+        <div class="appointment-section">
+            <h2 class="section-title">Request Marketing Consultation</h2>
+            <form class="appointment-form" onsubmit="submitForm(event, 'marketing-strategy')">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ms-name">Full Name</label>
+                            <input type="text" class="form-control" id="ms-name" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ms-email">Email Address</label>
+                            <input type="email" class="form-control" id="ms-email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ms-phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="ms-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ms-company">Company Name</label>
+                            <input type="text" class="form-control" id="ms-company" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="ms-message">Your Marketing Goals</label>
+                    <textarea class="form-control" id="ms-message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="ms-success" class="success-message">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="success-title">Request Submitted Successfully!</h3>
+                <p class="success-text">
+                    Thank you for your interest in our Marketing Strategy service. 
+                    Our team will review your request and contact you within 24 hours 
+                    to discuss your marketing needs.
+                </p>
+                <button class="back-btn" onclick="hideServiceDetail()">Back to Services</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leadership Development Detail -->
+    <div id="leadership-development" class="service-detail-container" style="display: none;">
+        <div class="service-detail-header">
+            <div class="service-detail-image">
+                <img src="business-planning6.jpg"
+                    alt="Leadership Development">
+            </div>
+            <div class="service-detail-content">
+                <h1 class="service-detail-title">Leadership Development</h1>
+                <p class="service-detail-description">
+                    Our leadership development programs are designed to cultivate effective leaders at all levels of your 
+                    organization. Through customized training, coaching, and assessment tools, we help individuals and 
+                    teams develop the skills needed to lead with confidence and drive organizational success.
+                </p>
+                <div class="service-features">
+                    <h2>Key Features</h2>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h3 class="feature-title">Leadership Assessment</h3>
+                            <p class="feature-description">
+                                Comprehensive evaluation of leadership strengths and areas for growth.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="feature-title">Team Leadership</h3>
+                            <p class="feature-description">
+                                Develop skills to build and lead high-performing teams.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3 class="feature-title">Communication Skills</h3>
+                            <p class="feature-description">
+                                Master effective communication for leadership situations.
+                            </p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-chess-king"></i>
+                            </div>
+                            <h3 class="feature-title">Strategic Thinking</h3>
+                            <p class="feature-description">
+                                Develop the ability to think and act strategically.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appointment Form -->
+        <div class="appointment-section">
+            <h2 class="section-title">Request Leadership Development Consultation</h2>
+            <form class="appointment-form" onsubmit="submitForm(event, 'leadership-development')">
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ld-name">Full Name</label>
+                            <input type="text" class="form-control" id="ld-name" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ld-email">Email Address</label>
+                            <input type="email" class="form-control" id="ld-email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ld-phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="ld-phone" required>
+                        </div>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label class="form-label" for="ld-company">Company Name</label>
+                            <input type="text" class="form-control" id="ld-company" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="ld-message">Your Leadership Development Needs</label>
+                    <textarea class="form-control" id="ld-message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Request</button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="ld-success" class="success-message">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="success-title">Request Submitted Successfully!</h3>
+                <p class="success-text">
+                    Thank you for your interest in our Leadership Development service. 
+                    Our team will review your request and contact you within 24 hours 
+                    to discuss your leadership training needs.
+                </p>
+                <button class="back-btn" onclick="hideServiceDetail()">Back to Services</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-left">
+            <img src="https://hkangles.com/gaiding/wp-content/uploads/2025/01/footer-logo.svg" alt="Gaiding Logo">
+            <h2>Gaiding</h2>
+            <p>Empowering individuals and organizations to reach their full potential through professional development
+                and coaching services.</p>
+            <div class="footer-input">
+                <input type="email" placeholder="Enter your email...">
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-column">
+                <h3>Pages</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Contact Us</li>
+                    <li>Pricing</li>
+                    <li>Our Team</li>
+                    <li>Testimonials</li>
+                    <li>FAQ</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li>Leadership Coaching</li>
+                    <li>Team Building</li>
+                    <li>Career Development</li>
+                    <li>Performance Analysis</li>
+                    <li>Business Strategy</li>
+                    <li>Communication Skills</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li>Blog</li>
+                    <li>Case Studies</li>
+                    <li>Webinars</li>
+                    <li>Workshops</li>
+                    <li>Free Tools</li>
+                    <li>Research Papers</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        Copyright © 2024 Gaiding. All Rights Reserved.
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Show service detail page
+        function showServiceDetail(serviceId) {
+            document.querySelectorAll('.service-detail-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            
+            document.querySelector('.services-section').style.display = 'none';
+            
+            document.getElementById(serviceId).style.display = 'block';
+            
+            window.scrollTo(0, 0);
+        }
+        
+        // Hide service detail and show services section
+        function hideServiceDetail() {
+            document.querySelectorAll('.service-detail-container').forEach(container => {
+                container.style.display = 'none';
+            });
+            
+            // Show services section
+            document.querySelector('.services-section').style.display = 'block';
+            
+            document.querySelector('.services-section').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Form submission handler
+        function submitForm(event, serviceId) {
+            event.preventDefault();
+            
+            event.target.style.display = 'none';
+            
+            document.getElementById(`${serviceId}-success`).style.display = 'block';
+            
+            document.getElementById(`${serviceId}-success`).scrollIntoView({ behavior: 'smooth' });
+        
+        }
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT US</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+:root {
+    --primary: #1B3C36;
+    --secondary: #F9F8F2;
+    --accent: #9CA08C;
+    --dark: #121212;
+    --light: #f4f4f4;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--light);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--secondary);
+    padding: 15px 5%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    color: var(--primary);
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary) !important;
+}
+
+.nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover:after,
+.nav-link.active:after {
+    width: 100%;
+}
+
+.search-icon {
+    background: var(--primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-icon:hover {
+    background: #142822;
+    transform: scale(1.05);
+}
+
+.btn-custom {
+    background: var(--primary);
+    color: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: 600;
+    margin-left: 15px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    background: #142822;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 90%;
+    height: 300px;
+    margin: 20px auto;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+        url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dGVhbXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: white;
+    text-align: left;
+    padding: 0 5%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    position: relative;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.breadcrumb {
+    margin-top: 10px;
+    font-size: 1rem;
+    position: relative;
+}
+
+.breadcrumb a {
+    color: white;
+    text-decoration: none;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #ddd;
+    text-decoration: underline;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-virtual-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-info {
+    background: #f8f8f2;
+    padding: 20px;
+    border-radius: 15px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-info h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    background-color: #1f3b34;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-right: 15px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+}
+
+.icon:hover {
+    transform: scale(1.1);
+}
+
+.info-text {
+    font-size: 1rem;
+}
+
+.info-text h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    background-color: #a6a88d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.virtual-consultation {
+    background: #1f3b34;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.virtual-consultation img {
+    width: 80px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    margin-bottom: 10px;
+}
+
+.virtual-consultation img:hover {
+    transform: scale(1.1);
+}
+
+.virtual-consultation h2 {
+    margin: 10px 0;
+    font-size: 1.3rem;
+}
+
+.virtual-consultation p {
+    margin: 10px 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.btn {
+    background: white;
+    color: #1f3b34;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    transition: background 0.3s, color 0.3s;
+    font-size: 0.9rem;
+}
+
+.btn:hover {
+    background: #1f3b34;
+    color: white;
+    border: 1px solid white;
+}
+
+.map-form-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.map-container {
+    flex: 2;
+    height: 500px;
+    min-width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+    flex: 1;
+    min-width: 300px;
+    background-color: #a5a582;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.form-container h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #fff;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea,
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+    background: #f8f8f8;
+}
+
+.form-container button {
+    background-color: #fff;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.form-container button:hover {
+    background-color: #ddd;
+}
+
+.date-time-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.date-time-container input {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 5%;
+    background: var(--dark);
+    color: white;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-left {
+    max-width: 300px;
+    min-width: 250px;
+    flex: 1;
+}
+
+.footer-left img {
+    width: 60px;
+    margin-bottom: 15px;
+}
+
+.footer-left h2 {
+    margin: 10px 0;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.footer-left p {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+}
+
+.footer-input {
+    display: flex;
+    margin-top: 20px;
+}
+
+.footer-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 30px 0 0 30px;
+    outline: none;
+    font-size: 0.9rem;
+}
+
+.footer-input button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0 15px;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.footer-input button:hover {
+    background: #142822;
+}
+
+.footer-right {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    min-width: 150px;
+    flex: 1;
+}
+
+.footer-column h3 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    color: white;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.footer-column h3:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--primary);
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin: 10px 0;
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.footer-column ul li:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 15px;
+    background: #0a0a0a;
+    font-size: 0.8rem;
+    color: #b0b0b0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .contact-info h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero {
+        height: 250px;
+    }
+    
+    .info-item {
+        width: 100%;
+    }
+    
+    .map-container {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 3%;
+    }
+    
+    .hero {
+        height: 200px;
+        padding: 0 3%;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-info, 
+    .virtual-consultation,
+    .map-container,
+    .form-container {
+        min-width: 100%;
+    }
+    
+    .date-time-container input {
+        width: 48%;
+    }
+    
+    .footer {
+        padding: 30px 3%;
+    }
+    
+    .footer-column {
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        height: 180px;
+        border-radius: 10px;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .breadcrumb {
+        font-size: 0.9rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    
+    .nav-link {
+        margin: 0 5px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-custom {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .search-icon {
+        width: 35px;
+        height: 35px;
+        margin-left: 10px;
+    }
+    
+    .date-time-container input {
+        width: 100%;
+    }
+    
+    .footer-input input {
+        padding: 8px 12px;
+    }
+    
+    .footer-input button {
+        padding: 0 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero {
+        height: 150px;
+    }
+    
+    .hero h1 {
+        font-size: 1.3rem;
+    }
+    
+    .breadcrumb {
+        font-size: 0.8rem;
+    }
+    
+    .container {
+        width: 95%;
+    }
+    
+    .footer-left,
+    .footer-right {
+        min-width: 100%;
+    }
+    
+    .footer-column {
+        min-width: 100%;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://hkangles.com/gaiding/wp-content/uploads/2025/01/main-logo.svg" alt="Gaiding Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">SERVICES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="project.html">PROJECT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">CONTACT US</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <a href="#" class="btn btn-custom">GET STARTED →</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>CONTACT US</h1>
+        <div class="breadcrumb">
+            <a href="#">HOME</a>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <div class="info-virtual-container">
+
+            <div class="contact-info">
+                <h1>When you Need Help!<br />Contact us</h1>
+                <div class="info-row">
+                    <div class="info-item">
+                        <div class="icon">📞</div>
+                        <div class="info-text">
+                            <h3>Phone Number</h3>
+                            <p>(0) 123456789<br />+12 (3) 567 0000</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon">📧</div>
+                        <div class="info-text">
+                            <h3>Our Mail</h3>
+                            <p>mail@danto.com<br />mail@envato.com</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon">⏰</div>
+                        <div class="info-text">
+                            <h3>Open Hours</h3>
+                            <p>Mon - Fri 8.00 am – 5.00 pm<br />Weekend Closed</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon">📍</div>
+                        <div class="info-text">
+                            <h3>Our Address</h3>
+                            <p>A-1, Envato Headquarter, Australia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <a href="#">▶️</a>
+                    <a href="#">f</a>
+                    <a href="#">📷</a>
+                </div>
+            </div>
+
+            <div class="virtual-consultation">
+                <img src="https://icon-library.com/images/video-calling-icon/video-calling-icon-3.jpg"
+                    alt="Virtual Consultation" />
+                <h2>VIRTUAL CONSULTATION</h2>
+                <p>Get Online Face<br />to Face<br />Virtual Therapy</p>
+                <a href="#" class="btn">GET VIRTUAL CONSULTATION →</a>
+            </div>
+        </div>
+
+
+        <div class="map-form-container">
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?v=3&output=embed" width="100%" height="100%"
+                    frameborder="0" style="border:0;" allowfullscreen></iframe>
+            </div>
+
+            <div class="form-container">
+                <h2>Book an Appointment</h2>
+                <input type="text" placeholder="Your Name*" id="name" required />
+                <input type="text" placeholder="Your Phone*" id="phone" required />
+                <select id="services">
+                    <option>Select Services</option>
+                    <option>Consultation</option>
+                    <option>Checkup</option>
+                </select>
+                <div class="date-time-container">
+                    <input type="date" id="date" />
+                    <input type="time" id="time" />
+                </div>
+                <textarea placeholder="Message" id="message"></textarea>
+                <button onclick="bookAppointment()">BOOK AN APPOINTMENT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-left">
+            <img src="https://hkangles.com/gaiding/wp-content/uploads/2025/01/footer-logo.svg" alt="Gaiding Logo">
+            <h2>Gaiding</h2>
+            <p>Empowering individuals and organizations to reach their full potential through professional development
+                and coaching services.</p>
+            <div class="footer-input">
+                <input type="email" placeholder="Enter your email...">
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-column">
+                <h3>Pages</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Contact Us</li>
+                    <li>Pricing</li>
+                    <li>Our Team</li>
+                    <li>Testimonials</li>
+                    <li>FAQ</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li>Leadership Coaching</li>
+                    <li>Team Building</li>
+                    <li>Career Development</li>
+                    <li>Performance Analysis</li>
+                    <li>Business Strategy</li>
+                    <li>Communication Skills</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul>
+                    <li>Blog</li>
+                    <li>Case Studies</li>
+                    <li>Webinars</li>
+                    <li>Workshops</li>
+                    <li>Free Tools</li>
+                    <li>Research Papers</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        Copyright © 2024 Gaiding. All Rights Reserved.
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
