@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaiding Navbar with Search</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+    background: #F9F8F2;
+}
+
+.navbar {
+    background: #F9F8F2;
+    padding: 15px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.navbar-brand img {
+    height: 40px;
+    margin-right: 8px;
+}
+
+.navbar-nav .nav-link {
+    color: #333;
+    font-weight: 500;
+    margin: 0 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #1B3C36;
+}
+
+.navbar-nav .nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #1B3C36;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover:after,
+.navbar-nav .nav-link.active:after {
+    width: 100%;
+}
+
+.search-icon {
+    background: #1B3C36;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-left: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-icon:hover {
+    background: #142822;
+    transform: scale(1.05);
+}
+
+.btn-custom {
+    background: #1B3C36;
+    color: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: bold;
+    margin-left: 15px;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+    background: #142822;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-banner {
+    position: relative;
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    /* color: white; */
+}
+
+.about-banner img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    color: white;
+}
+
+.about-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.breadcrumb {
+    background: none;
+    padding-left: 0;
+    color: white;
+}
+
+/* who are you css */
+
+.section-container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content-container {
+    flex: 1;
+}
+
+.badge {
+    background: #fff;
+    color: #555;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.content-container h2 {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #222;
+    margin-top: 10px;
+}
+
+.content-container p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+.list-group {
+    margin-top: 20px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.list-group li {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.list-group li i {
+    color: #2E7D32;
+    margin-right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .section-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .image-container {
+        width: 100%;
+    }
+
+    .content-container {
+        width: 100%;
+    }
+}
+
+/* cards css */
+.section {
+    padding: 80px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tag {
+    color: #0066ff;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    text-align: center;
+    color: #222;
+}
+
+/* Team Container */
+.team-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* Team Member Card */
+.team-member {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    width: 270px;
+    cursor: pointer;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.team-member img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.team-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.team-content h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.team-content p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.team-content a {
+    color: #0066ff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.team-content a:hover {
+    color: #0044cc;
+    transform: translateX(5px);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    background: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    padding: 0;
+    position: relative;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-overlay.active .modal-container {
+    transform: translateY(0);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.close-modal:hover {
+    color: #0066ff;
+    transform: rotate(90deg);
+}
+
+/* Profile Content */
+.profile-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.profile-img {
+    flex: 1;
+    min-width: 300px;
+    padding: 0;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px 0 0 0;
+}
+
+.profile-info {
+    flex: 2;
+    min-width: 300px;
+    padding: 30px;
+}
+
+.profile-info h2 {
+    color: #0066ff;
+    margin-bottom: 5px;
+}
+
+.profile-position {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.profile-bio {
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.profile-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 24px;
+    color: #0066ff;
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    color: #0066ff;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #0066ff;
+    color: white;
+    transform: translateY(-5px);
+}
+
+/* Contact Form */
+.contact-form {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 0 0 15px 15px;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-title h3 {
+    color: #0066ff;
+    margin-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #0066ff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background-color: #0066ff;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0052cc;
+    transform: translateY(-2px);
+}
+
+/* Success Message */
+.success-message {
+    text-align: center;
+    padding: 40px 30px;
+    display: none;
+}
+
+.success-message i {
+    font-size: 60px;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.success-message h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #28a745;
+}
+
+.response-time {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 20px;
+    }
+
+    .profile-img {
+        min-width: 100%;
+        height: 300px;
+    }
+
+    .profile-img img {
+        border-radius: 15px 15px 0 0;
+    }
+
+    .modal-container {
+        width: 95%;
+    }
+}
+
+/* banner css  */
+.banner {
+    margin: auto;
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+    background: linear-gradient(to right, #1f3b3b, #7a8c77);
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 80%;
+    max-width: 1000px;
+}
+
+.left {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.4) url('../images/hero.jpg') center/cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.left h1 {
+    font-size: 40px;
+    margin: 0;
+}
+
+.left p {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.right {
+    flex: 2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .banner {
+        flex-direction: column;
+    }
+
+    .left {
+        padding: 10px;
+    }
+
+    .right {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .left h1 {
+        font-size: 30px;
+    }
+
+    .left p {
+        font-size: 16px;
+    }
+
+}
+
+
+
+/* secton title */
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.section-title span {
+    background: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+}
+
+.section-title h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #222;
+    margin-top: 10px;
+}
+
+.blog-card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fafafa;
+    transition: transform 0.3s ease-in-out;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.blog-content {
+    padding: 15px;
+    color: #222;
+}
+
+.blog-date {
+    background: #274c3d;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.blog-category {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+}
+
+.comment-icon {
+    float: right;
+    color: #666;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 40px;
+    background: #1c1c1c;
+    color: white;
+    gap: 20px;
+}
+
+.footer-left {
+    max-width: 300px;
+}
+
+.footer-left img {
+    width: 50px;
+}
+
+.footer-left h2 {
+    margin: 10px 0;
+    font-size: 24px;
+}
+
+.footer-left p {
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+.footer-input {
+    display: flex;
+    margin-top: 10px;
+}
+
+.footer-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+}
+
+.footer-input button {
+    background: #9ca08c;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+}
+
+.footer-right {
+    display: flex;
+    gap: 50px;
+}
+
+.footer-column h3 {
+    margin-bottom: 10px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px;
+    background: #121212;
+    font-size: 12px;
+    color: #b0b0b0;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-left {
+        max-width: 100%;
+    }
+
+    .footer-input {
+        justify-content: center;
+    }
+
+    .footer-right {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer {
+        padding: 20px;
+    }
+
+    .footer-input {
+        flex-direction: column;
+    }
+
+    .footer-input input {
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+
+    .footer-input button {
+        border-radius: 20px;
+        width: 100%;
+    }
+
+    .footer-right {
+        gap: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="https://hkangles.com/gaiding/wp-content/uploads/2025/01/main-logo.svg" alt="Logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">HOME</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">ABOUT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="services.html">SERVICES</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="project.html">PROJECT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">CONTACT US</a>
+              </li>
+            </ul>
+            <div class="d-flex align-items-center">
+              <div class="search-icon" onclick="openSearch()">
+                <i class="fas fa-search"></i>
+              </div>
+              <a href="#" class="btn btn-custom">GET STARTED →</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <div class="container mt-4">
+        <div class="about-banner">
+            <img src="hero.jpg" alt="About Us Image"> 
+            <div class="overlay"></div>
+            <div class="about-content">
+                <h1>About Us</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb text-light">
+                        <li class="breadcrumb-item"><a href="#" class="text-white">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="section-container">
+            <!-- Image -->
+            <div class="image-container">
+                <img src="who-we-are.jpg" alt="Who We Are">
+            </div>
+
+            <!-- Content -->
+            <div class="content-container">
+                <span class="badge">WHO WE ARE</span>
+                <h2>Step by step process for achieving success</h2>
+                <p>Accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+
+                <ul class="list-group">
+                    <li><i class="fas fa-check-circle"></i> Personal and Professional Success</li>
+                    <li><i class="fas fa-check-circle"></i> Your Potential with Expert Coaching</li>
+                    <li><i class="fas fa-check-circle"></i> Tailored Strategies for Growth</li>
+                    <li><i class="fas fa-check-circle"></i> Empowering Your Journey Success</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="tag">TEAM MEMBER</div>
+        <h1>Your Mentors or Coach</h1>
+    
+        <div class="team-container">
+            <!-- Member 1 -->
+            <div class="team-member" onclick="showProfile(1)">
+                <img src="profile.jpg" alt="Melena Marshall">
+                <div class="team-content">
+                    <h3>Melena Marshall</h3>
+                    <p>CEO / FOUNDER</p>
+                    <a href="javascript:void(0)">OPEN PROFILE →</a>
+                </div>
+            </div>
+    
+            <!-- Member 2 -->
+            <div class="team-member" onclick="showProfile(2)">
+                <img src="profile2.jpg" alt="Peter Thomas">
+                <div class="team-content">
+                    <h3>Peter Thomas</h3>
+                    <p>INVESTMENT EXPERT</p>
+                    <a href="javascript:void(0)">OPEN PROFILE →</a>
+                </div>
+            </div>
+    
+            <!-- Member 3 -->
+            <div class="team-member" onclick="showProfile(3)">
+                <img src="profile3.jpg" alt="Richard Smith">
+                <div class="team-content">
+                    <h3>Richard Smith</h3>
+                    <p>CLIENT MANAGER</p>
+                    <a href="javascript:void(0)">OPEN PROFILE →</a>
+                </div>
+            </div>
+    
+            <!-- Member 4 -->
+            <div class="team-member" onclick="showProfile(4)">
+                <img src="profile4.jpg" alt="Froster Collings">
+                <div class="team-content">
+                    <h3>Froster Collings</h3>
+                    <p>STOCK EXPERT</p>
+                    <a href="javascript:void(0)">OPEN PROFILE →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="profileModal">
+        <div class="modal-container">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            
+            <div id="profileContent">
+            </div>
+            
+            <div class="contact-form">
+                <div class="form-title">
+                    <h3>Contact This Mentor</h3>
+                    <p>Fill out the form below to send your request</p>
+                </div>
+                
+                <form id="contactForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">Your Name *</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Your Email *</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Describe Your Request *</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">SEND REQUEST</button>
+                </form>
+            </div>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                <h3>Request Submitted Successfully!</h3>
+                <p>Thank you for contacting us. We'll get back to you soon.</p>
+                
+                <div class="response-time">
+                    <p><strong>Expected response time:</strong> 1-2 business days</p>
+                    <p>You'll receive a confirmation email shortly.</p>
+                </div>
+                
+                <button class="submit-btn" style="margin-top: 20px;" onclick="closeModal()">CLOSE</button>
+            </div>
+        </div>
+    </div>
+    <!-- banner  -->
+    <div class="banner">
+        <div class="left">
+            <h1>1050+</h1>
+            <p>&#9733; 30 Million Users</p>
+        </div>
+        <div class="right">
+            <div class="logo">Logo 1</div>
+            <div class="logo">Logo 2</div>
+            <div class="logo">Logo 3</div>
+            <div class="logo">Logo 4</div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="section-title">
+            <span>OUR BLOG</span>
+            <h2>Find Our Latest Articles</h2>
+        </div>
+
+        <div class="row">
+            <!-- Blog Card 1 -->
+            <div class="col-md-4">
+                <div class="blog-card shadow-sm">
+                    <img src="blog-img01.jpg" alt="Blog Image">
+                    <div class="blog-content">
+                        <div class="blog-date">FEBRUARY 18, 2024</div>
+                        <h5>Tips for how to find your place in world</h5>
+                        <div class="blog-category">MOTIVATION <span class="comment-icon">💬 0</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Card 2 -->
+            <div class="col-md-4">
+                <div class="blog-card shadow-sm">
+                    <img src="blog-img02.jpg" alt="Blog Image">
+                    <div class="blog-content">
+                        <div class="blog-date">JUNE 28, 2023</div>
+                        <h5>We provide you Motivational coaching</h5>
+                        <div class="blog-category">LEADERSHIP <span class="comment-icon">💬 0</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Card 3 -->
+            <div class="col-md-4">
+                <div class="blog-card shadow-sm">
+                    <img src="blog-img03.jpg" alt="Blog Image">
+                    <div class="blog-content">
+                        <div class="blog-date">JUNE 28, 2023</div>
+                        <h5>We provide motivation for How to handle career</h5>
+                        <div class="blog-category">COACHING <span class="comment-icon">💬 0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer  -->
+
+    <footer class="footer">
+        <div class="footer-left">
+            <img src="https://hkangles.com/gaiding/wp-content/uploads/2025/01/footer-logo.svg" alt="Logo">
+            <h2>Gaiding</h2>
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatem.</p>
+            <div class="footer-input">
+                <input type="email" placeholder="Enter your email...">
+                <button>🚀</button>
+            </div>
+        </div>
+        <div class="footer-right">
+            <div class="footer-column">
+                <h3>Pages</h3>
+                <ul>
+                    <li>About Us</li>
+                    <li>Contact Us</li>
+                    <li>Pricing Table</li>
+                    <li>Our Team</li>
+                    <li>Testimonial</li>
+                    <li>Faq</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li>Anxiety</li>
+                    <li>Relationships</li>
+                    <li>Eating Disorders</li>
+                    <li>Depression</li>
+                    <li>ADHD</li>
+                    <li>Childhood Abuse</li>
+                    <li>OCD</li>
+                    <li>Trauma</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Therapists</h3>
+                <ul>
+                    <li>Interview Coaching</li>
+                    <li>Career Transition</li>
+                    <li>Creative Leadership</li>
+                    <li>Inspirational Videos</li>
+                    <li>Careers Development</li>
+                    <li>Careers Development</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+        Copyright © 2024 All Rights Reserved.
+    </div>
+    <!-- footer close  -->
+    <script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
